@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block body  %}
+<style>
+    body {
+        background-image: url("../../static/img/lock4.jpg");
+        background-size: cover;
+        font-family: "Nunito Sans", sans-serif;
+        /* Flexbox utilities to center content vertically and horizontally on the page */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 15px;
+        /* Add some padding around the content for smaller screens */
+    }
+</style>
+<div class="col-lg-5 col-md-7 col-sm-9">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show my-10" role="alert">
+        <strong>Message :</strong>{{ message }}
+        <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
+        </button>
+    </div>
+    {% endfor %}
+    <div class="card shadow-lg border-0 rounded-lg my-5">
+        <!-- Card Header -->
+        <div class="card-header">
+            <h3 class="text-center fw-bold my-3">
+                SmartFinance - Login
+            </h3>
+        </div>
+
+        <!-- Card Body - Login Form -->
+        <div class="card-body p-4">
+            <form action="/handlelogin/" method="post">
+                <!-- Django CSRF Token (assuming this is a Django template) -->
+                {% csrf_token %}
+
+                <!-- Username Field -->
+                <div class="mb-3">
+                    <label class="form-label" for="loginuname">Username</label>
+                    <input class="form-control" id="loginuname" name="loginuname" type="text"
+                        placeholder="Enter user name" required />
+                </div>
+
+                <!-- Password Field -->
+                <div class="mb-3">
+                    <label class="form-label" for="loginpassword1">Password</label>
+                    <input class="form-control" id="loginpassword1" name="loginpassword1" type="password"
+                        placeholder="Enter password" required />
+                </div>
+
+                <!-- Remember Password Checkbox -->
+                <div class="form-check mb-3">
+                    <input class="form-check-input" id="rememberPasswordCheck" type="checkbox" />
+                    <label class="form-check-label" for="rememberPasswordCheck">Remember password</label>
+                </div>
+
+                <!-- Login Button -->
+                <div class="d-grid gap-2 mt-4">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Card Footer - Signup Link -->
+        <div class="card-footer text-center py-3">
+            <div class="small">
+                <a href="/register" class="text-decoration-none text-primary">
+                    Need an account? Sign up!
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+{% endblock body %}

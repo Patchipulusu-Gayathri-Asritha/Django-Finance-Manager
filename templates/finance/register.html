@@ -1,0 +1,148 @@
+{% extends 'base1.html' %}
+{% block body  %}
+<style>
+    body {
+        background-image: url("../../static/img/signup2.jpg");
+        background-size: cover;
+        font-family: "Nunito Sans", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    .form-control,
+    .form-select {
+        border-radius: 0.375rem;
+        /* Slightly rounded input fields */
+        padding: 0.75rem 1rem !important;
+        /* Padding for input fields */
+    }
+</style>
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show my-10" role="alert">
+                <strong>Message :</strong>{{ message }}
+                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
+                </button>
+            </div>
+            {% endfor %}
+            <div class="card shadow-lg border-0 rounded-lg mt-4">
+                <!-- Card Header -->
+                <div class="card-header">
+                    <h3 class="text-center fw-bold my-3">
+                        SmartFinance - Sign Up
+                    </h3>
+                </div>
+
+                <!-- Card Body - Form -->
+                <div class="card-body p-4">
+                    <form action="/handleSignup/" method="post">
+                        <!-- This token is typically used in Django for security; kept as is -->
+                        {% csrf_token %}
+
+                        <!-- User Name Field -->
+                        <div class="mb-2">
+                            <label class="form-label" for="uname">User Name</label>
+                            <input class="form-control" id="uname" name="uname" type="text"
+                                placeholder="Enter User Name" required />
+                        </div>
+
+                        <div class="row">
+                            <!--First name field-->
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label" for="fname">First Name</label>
+                                <input class="form-control" id="fname" name="fname" type="text"
+                                    placeholder="Enter first name" required />
+                            </div>
+
+                            <!--Last name field-->
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label" for="lname">Last Name</label>
+                                <input class="form-control" id="lname" name="lname" type="text"
+                                    placeholder="Enter last name" required />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Email Field -->
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label" for="email">Email</label>
+                                <input class="form-control" id="email" name="email" type="email"
+                                    aria-describedby="emailHelp" placeholder="Enter email address" required />
+                            </div>
+
+                            <!-- Profession Field -->
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label" for="profession">Profession</label>
+                                <!-- Using Bootstrap's form-select for consistent styling -->
+                                <select name="profession" id="profession" class="form-select" required>
+                                    <option value="Employee">Employee</option>
+                                    <option value="Business">Business</option>
+                                    <option value="Student">Student</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <!-- Income Field -->
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label" for="income">Income</label>
+                                <input class="form-control" id="income" name="income" type="number" placeholder="Income"
+                                    required />
+                            </div>
+
+                            <!-- Savings Field -->
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label" for="Savings">Savings</label>
+                                <input class="form-control" id="Savings" name="Savings" type="number"
+                                    placeholder="Amount to be saved" required />
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <label class="form-label" for="pass1">Password</label>
+                                <input class="form-control" id="pass1" name="pass1" type="password"
+                                    placeholder="Enter password" required />
+                            </div>
+
+                            <!-- Confirm Password Field -->
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label" for="pass2">Confirm Password</label>
+                                <input class="form-control" id="pass2" name="pass2" type="password"
+                                    placeholder="Confirm password" required />
+                            </div>
+                        </div>
+                        <!-- Password Field -->
+
+
+                        <!-- Submit Button -->
+                        <div>
+                            <button type="submit" class="btn btn-primary w-100">
+                                Create User
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Card Footer -->
+                <div class="card-footer text-center py-3">
+                    <div class="small">
+                        <a href="/" class="text-decoration-none text-primary">
+                            Have an account? Go to login
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
